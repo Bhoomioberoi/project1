@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+</head>
+<body>
+    <input type="radio" name="game" value="stone" onclick="getgame(event)">stone
+    <input type="radio" name="game" value="paper" onclick="getgame(event)">paper
+    <input type="radio" name="game" value="scissor" onclick="getgame(event)">scissor
+    <br><input type="text" placeholder="Your name" id="fn">
+    <h1 id="game"></h1>
+    <h1 id="head1"></h1>
+    <h1 id="head2"></h1>
+    <button onclick="data()">Winner</button>
+    <button onclick="show()">Submit</button>
+    <script>
+        var selectedGame = "";
+        
+        function getgame(e) {
+            alert(e.target.value);
+            selectedGame = e.target.value;
+        }
+
+        function show() {
+            var name = document.getElementById("fn").value;
+            if (selectedGame === "") {
+                alert('Please select an option');
+            } else if (name === "") {
+                alert('Please fill in your name');
+            } else {
+                document.getElementById("head1").innerHTML = "Name: " + name;
+                document.getElementById("head2").innerHTML = "Game Name: " + selectedGame;
+            }
+        }
+
+        function data() {
+            var arr = ['stone', 'paper', 'scissor'];
+            let x = Math.floor(Math.random() * arr.length);
+            var computerChoice = arr[x];
+            alert("Computer selected: " + computerChoice);
+
+            if (computerChoice === selectedGame) {
+                alert("It's a tie!");
+            } else if ((selectedGame === 'stone' && computerChoice === 'paper') ||
+                       (selectedGame === 'paper' && computerChoice === 'scissor') ||
+                       (selectedGame === 'scissor' && computerChoice === 'stone')) {
+                alert("Computer wins!");
+            } else {
+                alert("User  wins!");
+            }
+        }
+    </script>
+</body>
+</html>
